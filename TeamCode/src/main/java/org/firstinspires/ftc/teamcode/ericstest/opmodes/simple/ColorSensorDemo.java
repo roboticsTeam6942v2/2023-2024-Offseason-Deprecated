@@ -27,6 +27,7 @@ public class ColorSensorDemo extends LinearOpMode {
 
         // in normal ftc code this would be illegal, you cant move before start is pressed unless it is to initialize parts of your robot
         // however in this sample we need to not be on the wall at the start and we have no choice where the robot starts
+        // NOTE pretty sure i made this sample for an online simulator idk why its made like this but for new kids they can at least see basics of color sensor i guess?
         frontLeft.setPower(1);
         frontRight.setPower(1);
         backLeft.setPower(1);
