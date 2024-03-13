@@ -1,7 +1,9 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems.actuators.drivetrains;
 
 import androidx.annotation.NonNull;
 import org.firstinspires.ftc.teamcode.libraries.subsystem;
+import org.firstinspires.ftc.teamcode.subsystems.EaseCommands;
+import org.firstinspires.ftc.teamcode.subsystems.actuators.base.Motor;
 
 import java.util.Arrays;
 

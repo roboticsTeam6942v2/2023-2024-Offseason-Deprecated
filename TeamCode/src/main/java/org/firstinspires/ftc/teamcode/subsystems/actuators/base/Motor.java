@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems.actuators.base;
 
 import androidx.annotation.NonNull;
 
@@ -36,7 +36,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
 
     public String getName() {
         return name;
-    }
+    } // made so we can sort if needed
 
     public void SP(double power) {
         ensureOpen();
@@ -81,6 +81,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     // then all of a sudden in one loop youve moved 4x the degrees you normally do, d will spike up to slow you down so you dont overshoot
 
     // input adjustment value
+    // RUN_USING_ENCODERS is a PID algorithm, so we are able to adjust the coefficients if we have a weird issue such as it getting caught on something then suddenly shooting
     public void changePIDF(double p, double i, double d, double f) {
         ensureOpen();
         PIDFCoefficients oldPIDF = motor.getPIDFCoefficients(DcMotorEx.RunMode.RUN_TO_POSITION);
