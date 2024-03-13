@@ -18,8 +18,8 @@ public class Mecanum extends subsystem {
         this.frontLeft = motors[2];
         this.frontRight = motors[3];
         // close because java is pass by value not pass by reference, if we can come up with a way to pass by referance or object we can change the function to be also able to control indiviual motors using the motor class
-        for (int i = 0; i < motors.length; i++) {
-            motors[i].close();
+        for (Motor motor : motors) {
+            motor.close();
         }
     }
 
@@ -347,7 +347,7 @@ public class Mecanum extends subsystem {
                 }
                 SP("dt", 0);
             default:
-                return;
+                break;
         }
     }
 }
