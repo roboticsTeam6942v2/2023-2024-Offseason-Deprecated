@@ -20,10 +20,21 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     private boolean closed;
     public MotorControlAlgorithm algorithm;
 
+    /**
+     * Sets the variables for the motor Object without direction
+     * @param name Name of the motor in the code
+     * @param hwMap Name of the motor within the phones
+     */
     public Motor(@NonNull String name, @NonNull HardwareMap hwMap) {
         this(name, hwMap, "forward");
     }
 
+    /**
+     * Sets the variables for the motor Object
+     * @param name Name of the motor in the code
+     * @param hwMap Name of the motor within the phones
+     * @param direction Direction of the motor (f or r)
+     */
     public Motor(@NonNull String name, @NonNull HardwareMap hwMap, @NonNull String direction) {
         motor = hwMap.get(DcMotorEx.class, name);
         motor.setDirection(direction.toLowerCase().charAt(0) == 'r' ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
@@ -34,40 +45,68 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
         closed = false;
     }
 
+    /**
+     * Returns the name of the motor Obejct
+     * @return name Name of the motor
+     */
     public String getName() {
         return name;
     } // made so we can sort if needed
 
+    /**
+     * Sets the power of the specific motor Object. Ex frontLeft.SP(1);
+     * @param power Power of the motor, between -1 and 1
+     */
     public void SP(double power) {
         ensureOpen();
         motor.setPower(power);
     }
 
+    /**
+     * Sets a target position for the encoders within the motor Object. Ex frontLeft.STP(100);
+     * @param tp Target Position (in ticks)
+     */
     public void STP(int tp) {
         ensureOpen();
         motor.setTargetPosition(+globalTicks);
     }
 
+    /**
+     * Sets the mode of the motor Object to RUN_TO_POSITION. Ex frontLeft.RTP();
+     */
     public void RTP() {
         ensureOpen();
         motor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
     }
 
+    /**
+     * Sets the mode of the motor Object to STOP_AND_RESET_ENCODERS. Ex frontLeft.SAR();
+     */
     public void SAR() {
         ensureOpen();
         globalTicks = motor.getCurrentPosition();
     }
 
+    /**
+     * Sets the mode of the motor Object to RUN_WITHOUT_ENCODER. Ex frontLeft.RWE();
+     */
     public void RWE() {
         ensureOpen();
         motor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    /**
+     * Sets the mode of motor Object to RUN_USING_ENCODER. Ex frontLeft.RUE();
+     */
     public void RUE() {
         ensureOpen();
         motor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
     }
 
+    /**
+     * N/A - Fill in later
+     * @param i
+     */
     public void ST(int i) {
         ensureOpen();
         motor.setTargetPositionTolerance(i);
@@ -82,6 +121,14 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
 
     // input adjustment value
     // RUN_USING_ENCODERS is a PID algorithm, so we are able to adjust the coefficients if we have a weird issue such as it getting caught on something then suddenly shooting
+
+    /**
+     * Input the adjustment value for the PID algorithm.
+     * @param p Speed according to the distance from the target
+     * @param i Increase power over time
+     * @param d Slow down to prevent overshoot
+     * @param f N/A - Fill in later
+     */
     public void changePIDF(double p, double i, double d, double f) {
         ensureOpen();
         PIDFCoefficients oldPIDF = motor.getPIDFCoefficients(DcMotorEx.RunMode.RUN_TO_POSITION);
@@ -89,18 +136,33 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
         motor.setPIDFCoefficients(DcMotorEx.RunMode.RUN_TO_POSITION, new PIDFCoefficients());
     }
 
+    /**
+     * Returns whether or not a motor is busy. Ex frontLeft.isBusy();
+     * @return isBusy (true or false)
+     */
     public boolean isBusy() {
         return motor.isBusy();
     }
 
+    /**
+     * Returns the current position of the motor Object. Ex frontLeft.GCP();
+     * @return
+     */
     public double GCP() {
         return motor.getCurrentPosition();
     }
 
+    /**
+     * Returns the target position of the motor Object. Ex frontLeft.GTP();
+     * @return
+     */
     public double GTP() {
         return motor.getTargetPosition();
     }
 
+    /**
+     * Sets closed to true
+     */
     @Override
     public void close() {
         if (closed)
@@ -108,11 +170,19 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
         closed = true;
     }
 
+    /**
+     * Throws an IllegalStateException if the motor is closed when it should be open
+     */
     private void ensureOpen() {
         if (closed)
             throw new IllegalStateException("Motor closed");
     }
 
+    /**
+     * Compares this motor to another motor. Fill in details later.
+     * @param otherMotor N/A - Fill in later
+     * @return N/A - Fill in later
+     */
     @Override
     public int compareTo(Motor otherMotor) {
         return this.name.compareTo(otherMotor.getName());
