@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import static java.lang.Math.*;
 
+/**
+ * Constants Object, used to keep anything that wont change over the season, or will change and gets called from many classes
+ */
 public class Constants {
 
     // drivetrain info

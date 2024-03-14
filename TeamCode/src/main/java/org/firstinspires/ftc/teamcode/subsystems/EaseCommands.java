@@ -4,6 +4,9 @@ import static java.lang.Math.*;
 
 import java.util.ArrayList;
 
+/**
+ * EaseCommands Object, Group of methods that are fundamental and may be useful in making programming easier
+ */
 public class EaseCommands {
     private static final Constants c = new Constants();
     // literally just anything to make life easier
