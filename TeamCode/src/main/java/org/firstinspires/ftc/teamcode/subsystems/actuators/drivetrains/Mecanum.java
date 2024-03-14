@@ -39,10 +39,10 @@ public class Mecanum extends subsystem implements DrivetrainHolonomic {
     public void teleOpDrive(double y, double rx, double x) {
         // maintain ratio in case of range clip
         double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
-        frontLeft.SP(((y+x+rx)/denominator));
-        backLeft.SP(((y-x+rx)/denominator));
-        frontRight.SP(((y-x-rx)/denominator));
-        backRight.SP(((y+x-rx)/denominator));
+        frontLeft.SP(((y+x*1.1+rx)/denominator));
+        backLeft.SP(((y-x*1.1+rx)/denominator));
+        frontRight.SP(((y-x*1.1-rx)/denominator));
+        backRight.SP(((y+x*1.1-rx)/denominator));
     }
     /**
      * Set power to motors for teleOp driving, allows for adjustment to speed
@@ -55,10 +55,10 @@ public class Mecanum extends subsystem implements DrivetrainHolonomic {
     public void teleOpDrive(double y, double rx, double x, double speed) {
         // maintain ratio in case of range clip
         double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
-        frontLeft.SP(((y+x+rx)/denominator)/speed);
-        backLeft.SP(((y-x+rx)/denominator)/speed);
-        frontRight.SP(((y-x-rx)/denominator)/speed);
-        backRight.SP(((y+x-rx)/denominator)/speed);
+        frontLeft.SP(((y+x*1.1+rx)/denominator)/speed);
+        backLeft.SP(((y-x*1.1+rx)/denominator)/speed);
+        frontRight.SP(((y-x*1.1-rx)/denominator)/speed);
+        backRight.SP(((y+x*1.1-rx)/denominator)/speed);
     }
     /**
      * Set power to motors using a case switch
