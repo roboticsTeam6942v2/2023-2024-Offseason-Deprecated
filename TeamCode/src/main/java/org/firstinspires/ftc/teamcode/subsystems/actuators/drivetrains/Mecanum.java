@@ -7,10 +7,16 @@ import org.firstinspires.ftc.teamcode.subsystems.actuators.base.Motor;
 
 import java.util.Arrays;
 
-
+/**
+ * Object in order to create Mecanum drive for autonomous
+ */
 public class Mecanum extends subsystem {
     private Motor frontLeft, frontRight, backLeft, backRight;
 
+    /**
+     * Creates a Mecanum drive Object by putting motors into a sorted array
+     * @param motors Four motor Objects in an array
+     */
     public Mecanum(Motor[] motors) {
         Arrays.sort(motors); // allows us to ensure motors are in the right order no matter what order the motor array is sent in
         this.backLeft = motors[0];
@@ -23,6 +29,11 @@ public class Mecanum extends subsystem {
         }
     }
 
+    /**
+     * Set power to motors using a case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     * @param p Power (between -1 and 1)
+     */
     public void SP(@NonNull String m, double p) {
         switch (m) {
             case "fl":
@@ -62,6 +73,11 @@ public class Mecanum extends subsystem {
         }
     }
 
+    /**
+     * Set the target position of the motors using a case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     * @param tp Target Position in ticks
+     */
     public void STP(@NonNull String m, int tp) {
         switch (m) {
             case "fl":
@@ -101,6 +117,10 @@ public class Mecanum extends subsystem {
         }
     }
 
+    /**
+     * Sets the mode of the motor to RUN_TO_POSITION using case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     */
     public void RTP(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -140,6 +160,10 @@ public class Mecanum extends subsystem {
         }
     }
 
+    /**
+     * Sets the mode of the motor to STOP_AND_RESET_ENCODERS using case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     */
     public void SAR(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -179,6 +203,10 @@ public class Mecanum extends subsystem {
         }
     }
 
+    /**
+     * Sets the mode of the motor to RUN_WITHOUT_ENCODERS using case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     */
     public void RWE(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -218,6 +246,10 @@ public class Mecanum extends subsystem {
         }
     }
 
+    /**
+     * Sets the mode of the motor to RUN_USING_ENCODERS using case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     */
     public void RUE(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -257,6 +289,10 @@ public class Mecanum extends subsystem {
         }
     }
 
+    /**
+     * N/A - Fill in later
+     * @param i N/A - Fill in later
+     */
     public void ST(int i) {
         frontLeft.ST(i);
         backLeft.ST(i);
@@ -264,10 +300,20 @@ public class Mecanum extends subsystem {
         frontRight.ST(i);
     }
 
+    /**
+     * Returns whether or not the drivetrain is busy
+     * @return isBusy (true or false)
+     */
     public boolean isBusy() {
         return frontLeft.isBusy() && backLeft.isBusy() && backRight.isBusy() && frontRight.isBusy();
     }
 
+    /**
+     * Driving method used for autonomous using case switch, distance, and power
+     * @param direction Direction to drive
+     * @param inches Distance using inches
+     * @param speed Power (between -1 and 1)
+     */
     public void drive(@NonNull String direction, double inches, double speed) {
         SAR("dt");
         RUE("dt");

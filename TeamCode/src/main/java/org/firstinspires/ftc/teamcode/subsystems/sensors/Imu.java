@@ -14,11 +14,21 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.libraries.subsystem;
 
+/**
+ * Methods to streamline the usage of the IMU
+ */
 public class Imu extends subsystem {
     private Orientation lastAngles = new Orientation();
     private double globalAngle;
     private IMU imu;
 
+    /**
+     * IMU Object
+     * @param name Name of the IMU in the code
+     * @param hwMap Name of the IMU in the phone
+     * @param logoDirection Logo Direction
+     * @param usbDirection USB Direction
+     */
     public Imu(String name, @NonNull HardwareMap hwMap, RevHubOrientationOnRobot.LogoFacingDirection logoDirection, RevHubOrientationOnRobot.UsbFacingDirection usbDirection) {
         imu = hwMap.get(IMU.class, name);
         RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection, usbDirection);
@@ -26,11 +36,18 @@ public class Imu extends subsystem {
         globalAngle = 0;
     }
 
+    /**
+     * Resets the global angle of the IMU
+     */
     public void resetAngle() {
         lastAngles = imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         globalAngle = 0;
     }
 
+    /**
+     * Returns the current angle of the robot
+     * @return globalAngle Current angle
+     */
     public double getAngle() {
         // imu works in eulear angles so we have to detect when it rolls across the backwards 180 threshold
         Orientation angles = imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
