@@ -28,7 +28,35 @@ public class Mecanum extends subsystem {
             motor.close();
         }
     }
-
+    /**
+     * Set power to motors for teleOp driving
+     * @param y Driving
+     * @param rx Rotation
+     * @param x Strafing
+     */
+    public void teleOpDrive(double y, double rx, double x) {
+        // maintain ratio in case of range clip
+        double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
+        frontLeft.SP(((y+x+rx)/denominator));
+        backLeft.SP(((y-x+rx)/denominator));
+        frontRight.SP(((y-x-rx)/denominator));
+        backRight.SP(((y+x-rx)/denominator));
+    }
+    /**
+     * Set power to motors for teleOp driving, allows for adjustment to speed
+     * @param y Driving
+     * @param rx Rotation
+     * @param x Strafing
+     * @param speed Speed reduction, higher reduction means slower speed
+     */
+    public void teleOpDrive(double y, double rx, double x, double speed) {
+        // maintain ratio in case of range clip
+        double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
+        frontLeft.SP(((y+x+rx)/denominator)/speed);
+        backLeft.SP(((y-x+rx)/denominator)/speed);
+        frontRight.SP(((y-x-rx)/denominator)/speed);
+        backRight.SP(((y+x-rx)/denominator)/speed);
+    }
     /**
      * Set power to motors using a case switch
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
