@@ -4,13 +4,14 @@ import androidx.annotation.NonNull;
 import org.firstinspires.ftc.teamcode.libraries.subsystem;
 import org.firstinspires.ftc.teamcode.subsystems.EaseCommands;
 import org.firstinspires.ftc.teamcode.subsystems.actuators.base.Motor;
+import org.firstinspires.ftc.teamcode.subsystems.interfaces.DrivetrainHolonomic;
 
 import java.util.Arrays;
 
 /**
  * Object in order to create Mecanum drive for autonomous
  */
-public class Mecanum extends subsystem {
+public class Mecanum extends subsystem implements DrivetrainHolonomic {
     private Motor frontLeft, frontRight, backLeft, backRight;
 
     /**
@@ -34,6 +35,7 @@ public class Mecanum extends subsystem {
      * @param rx Rotation
      * @param x Strafing
      */
+    @Override
     public void teleOpDrive(double y, double rx, double x) {
         // maintain ratio in case of range clip
         double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
@@ -49,6 +51,7 @@ public class Mecanum extends subsystem {
      * @param x Strafing
      * @param speed Speed reduction, higher reduction means slower speed
      */
+    @Override
     public void teleOpDrive(double y, double rx, double x, double speed) {
         // maintain ratio in case of range clip
         double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
@@ -62,6 +65,7 @@ public class Mecanum extends subsystem {
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      * @param p Power (between -1 and 1)
      */
+    @Override
     public void SP(@NonNull String m, double p) {
         switch (m) {
             case "fl":
@@ -106,6 +110,7 @@ public class Mecanum extends subsystem {
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      * @param tp Target Position in ticks
      */
+    @Override
     public void STP(@NonNull String m, int tp) {
         switch (m) {
             case "fl":
@@ -149,6 +154,7 @@ public class Mecanum extends subsystem {
      * Sets the mode of the motor to RUN_TO_POSITION using case switch
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      */
+    @Override
     public void RTP(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -192,6 +198,7 @@ public class Mecanum extends subsystem {
      * Sets the mode of the motor to STOP_AND_RESET_ENCODERS using case switch
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      */
+    @Override
     public void SAR(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -235,6 +242,7 @@ public class Mecanum extends subsystem {
      * Sets the mode of the motor to RUN_WITHOUT_ENCODERS using case switch
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      */
+    @Override
     public void RWE(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -278,6 +286,7 @@ public class Mecanum extends subsystem {
      * Sets the mode of the motor to RUN_USING_ENCODERS using case switch
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      */
+    @Override
     public void RUE(@NonNull String m) {
         switch (m) {
             case "fl":
@@ -342,6 +351,7 @@ public class Mecanum extends subsystem {
      * @param inches Distance using inches
      * @param speed Power (between -1 and 1)
      */
+    @Override
     public void drive(@NonNull String direction, double inches, double speed) {
         SAR("dt");
         RUE("dt");
