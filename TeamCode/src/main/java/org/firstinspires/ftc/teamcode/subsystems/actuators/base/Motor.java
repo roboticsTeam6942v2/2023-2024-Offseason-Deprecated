@@ -12,7 +12,9 @@ import org.firstinspires.ftc.teamcode.libraries.subsystem;
 
 import java.io.Closeable;
 
-
+/**
+ * Motor Object. Used to declare the motors within the programming of the robot
+ */
 public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     private DcMotorEx motor;
     private String name;
@@ -105,7 +107,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
 
     /**
      * N/A - Fill in later
-     * @param i
+     * @param i N/A - fill in later
      */
     public void ST(int i) {
         ensureOpen();
@@ -146,7 +148,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
 
     /**
      * Returns the current position of the motor Object. Ex frontLeft.GCP();
-     * @return
+     * @return The current position of the motor in ticks
      */
     public double GCP() {
         return motor.getCurrentPosition();
@@ -154,7 +156,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
 
     /**
      * Returns the target position of the motor Object. Ex frontLeft.GTP();
-     * @return
+     * @return The target position of the motor in ticks
      */
     public double GTP() {
         return motor.getTargetPosition();
