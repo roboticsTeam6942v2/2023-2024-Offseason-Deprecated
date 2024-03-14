@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.libraries.subsystem;
 /**
  * Methods to streamline the usage of ColorSensors
  */
-public class ColorSensor extends subsystem {
+public class RGBSensor extends subsystem {
     private ColorSensor colorSensor;
 
     /**
@@ -18,7 +18,7 @@ public class ColorSensor extends subsystem {
      * @param name Name of the ColorSensor in the code
      * @param hwMap Name of the ColorSensor in the phone
      */
-    public ColorSensor(String name, @NonNull HardwareMap hwMap){
+    public RGBSensor(String name, @NonNull HardwareMap hwMap){
         colorSensor = hwMap.get(ColorSensor.class, name);
     }
 
@@ -55,7 +55,7 @@ public class ColorSensor extends subsystem {
      * @return Whether or not the value is in the boundary (true or false)
      */
     public boolean redBoundary(int num1, int num2){
-        if (colorSensor.getRed() > num1 && colorSensor.getRed() < num2){
+        if (colorSensor.red() > num1 && colorSensor.red() < num2){
             return true;
         } else {
             return false;
@@ -69,7 +69,7 @@ public class ColorSensor extends subsystem {
      * @return Whether or not the value is in the boundary (true or false)
      */
     public boolean blueBoundary(int num1, int num2) {
-        if (colorSensor.getBlue() > num1 && colorSensor.getBlue() < num2){
+        if (colorSensor.blue() > num1 && colorSensor.blue() < num2){
             return true;
         } else {
             return false;
@@ -83,7 +83,7 @@ public class ColorSensor extends subsystem {
      * @return Whether or not the value is in the boundary (true or false)
      */
     public boolean greenBoundary(int num1, int num2){
-        if (colorSensor.getGreen() > num1 && colorSensor.getGreen() < num2){
+        if (colorSensor.green() > num1 && colorSensor.green() < num2){
             return true;
         } else {
             return false;
