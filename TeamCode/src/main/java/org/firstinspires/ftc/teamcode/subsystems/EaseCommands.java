@@ -11,6 +11,11 @@ public class EaseCommands {
     // just call import static org.firstinspires.ftc.teamcode.subsystems.ease_commands.*;
 
     // math based functions
+    /**
+     * Returns the sum of the array values
+     * @param i Array containing numbers
+     * @return Sum of array
+     */
     public static double sumAll(double[] i) {
         double o = 0;
         for ( double x : i) {
@@ -18,6 +23,11 @@ public class EaseCommands {
         }
         return o;
     }
+    /**
+     * Returns the sum of the array values
+     * @param i Array containing numbers
+     * @return Sum of array
+     */
     public static double sumAll(ArrayList<Double> i) {
         double o = 0;
         for (double x : i) {
@@ -25,6 +35,11 @@ public class EaseCommands {
         }
         return o;
     }
+    /**
+     * Returns the sum of the array values
+     * @param i Array containing numbers
+     * @return Sum of array
+     */
     public static int sumAll(int[] i) {
         int o = 0;
         for ( double x : i) {
@@ -32,6 +47,11 @@ public class EaseCommands {
         }
         return o;
     }
+    /**
+     * Returns the smallest value of the array values
+     * @param input Array containing numbers
+     * @return Smallest value of the array
+     */
     public static int minAll(int[] input) {
         int o = 0;
         int i = 0;
@@ -44,6 +64,11 @@ public class EaseCommands {
         }
         return o;
     }
+    /**
+     * Returns the smallest value of the array values
+     * @param input Array containing numbers
+     * @return Smallest value of the array
+     */
     public static double minAll(double[] input) {
         double o = 0;
         int i = 0;
@@ -56,6 +81,11 @@ public class EaseCommands {
         }
         return o;
     }
+    /**
+     * Returns the largest value of the array values
+     * @param input Array containing numbers
+     * @return Largest value of the array
+     */
     public static int maxAll(int[] input) {
         int o = 0;
         int i = 0;
@@ -68,6 +98,11 @@ public class EaseCommands {
         }
         return o;
     }
+    /**
+     * Returns the largest value of the array values
+     * @param input Array containing numbers
+     * @return Largest value of the array
+     */
     public static double maxAll(double[] input) {
         double o = 0;
         int i = 0;
@@ -83,6 +118,12 @@ public class EaseCommands {
 
     // array based functions
     // findInArr assumes there is only once entry with that value
+    /**
+     * Returns the first index of a given value in an array
+     * @param flag What we want to find the index of
+     * @param arr Array containing numbers
+     * @return Index of the value in the array
+     */
     public double findInArr(double flag, double[] arr) {
         int i = 0;
         for (double x : arr) {
@@ -93,6 +134,12 @@ public class EaseCommands {
         }
         return i;
     }
+    /**
+     * Returns the first index of a given value in an array
+     * @param flag What we want to find the index of
+     * @param arr Array containing numbers
+     * @return Index of the value in the array
+     */
     public static int findInArr(int flag, int[] arr) {
         int i = 0;
         for (int x : arr) {
@@ -103,6 +150,12 @@ public class EaseCommands {
         }
         return i;
     }
+    /**
+     * Returns the first index of a given value in an array
+     * @param flag What we want to find the index of
+     * @param arr Array containing numbers
+     * @return Index of the value in the array
+     */
     public int findInArr(String flag, String[] arr) {
         int i = 0;
         for (String x : arr) {
@@ -114,9 +167,20 @@ public class EaseCommands {
         return i;
     }
 
+    /**
+     * Returns a unit of measure converted to inches
+     * @param i The number you want to convert
+     * @param u The unit the number is, "in", "cm", or "mm"
+     * @return Index of the value in the array
+     */
     public static double toIN(double i, String u) {
         return u.equals("in")?i:u.equals("cm")?i/2.54:u.equals("mm")?i/25.4:0;
     }
+    /**
+     * Returns a value of ticks to travel based of the conversion factor defined in Constants class
+     * @param inches The number you want to travel in inches
+     * @return Integer of ticks to get to target distance
+     */
     public static int inTT_dt(double inches){
         return (int)round(c.conversion_factor_dt*inches);
     }
@@ -124,7 +188,11 @@ public class EaseCommands {
     public static int inTT_linear_slide(double inches){
         return (int)round(c.conversion_factor_linear_slide*inches);
     }*/
-
+    /**
+     * Returns assumes the nearest color of based on RGB values
+     * @param i Hex values as int array
+     * @return Assumed color as String
+     */
     public static String colorID(int[] i) {
         // make colors with matching indices to their values
 //        String[] colors = {"black","very_light_red","light_red","red","dark_red","very_dark_red",

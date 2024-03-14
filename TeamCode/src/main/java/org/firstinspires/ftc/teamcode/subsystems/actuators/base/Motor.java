@@ -20,10 +20,6 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     private String name;
     private int globalTicks;
     private boolean closed;
-    /**
-     * IDK figure out later
-     */
-    public MotorControlAlgorithm algorithm;
 
     /**
      * Sets the variables for the motor Object without direction
@@ -109,8 +105,8 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * N/A - Fill in later
-     * @param i N/A - fill in later
+     * Set the tolerance of the motors, used to determine how close the target position must be to the current position for isBusy() to return false
+     * @param i Number of ticks
      */
     public void ST(int i) {
         ensureOpen();

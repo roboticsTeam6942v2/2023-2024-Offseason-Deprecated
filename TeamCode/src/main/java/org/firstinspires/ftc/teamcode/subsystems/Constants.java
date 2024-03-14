@@ -5,9 +5,18 @@ import static java.lang.Math.*;
 public class Constants {
 
     // drivetrain info
+    /**
+     * Diameter of wheel, used to do math for the autonomous drivetrains
+     */
     final double diameter_dt=4; // wheel diameter
-    final int motor_ratio_dt=1; // ratio on motor
-    final double gear_ratio_up_dt=3.16*2.89; // gears on driveshaft, direct drive = 1
+    /**
+     * Gear ratio of motor, used to do math for the autonomous drivetrains
+     */
+    final int motor_ratio_dt=(int)(3.16*2.89); // ratio on motor
+    /**
+     * Gear ratio of motor, used to do math for the autonomous drivetrains
+     */
+    final double gear_ratio_up_dt=1; // gears on driveshaft, direct drive = 1
     final double gear_ratio_down_dt=1; // gears on driveshaft, direct drive = 1
 
     // to calculate distances
@@ -15,6 +24,10 @@ public class Constants {
     final double conversion_factor_dt = getConversionFactorDT();
 //    final double conversion_factor_linear_slide = getConversionFactorLinearSlide();
 
+    /**
+     * Returns the conversion factor from inches to ticks of our current drivetrain
+     * @return Conversion of inches to ticks
+     */
     public double getConversionFactorDT() {
         try {
             return ((motor_ratio_dt*gear_ratio_up_dt*28)/gear_ratio_down_dt)/(diameter_dt*PI);
