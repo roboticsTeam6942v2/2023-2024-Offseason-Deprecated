@@ -13,13 +13,16 @@ import org.firstinspires.ftc.teamcode.libraries.subsystem;
 import java.io.Closeable;
 
 /**
- * Motor Object. Used to declare the motors within the programming of the robot
+ * Motor Object, used to declare the motors within the programming of the robot
  */
 public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     private DcMotorEx motor;
     private String name;
     private int globalTicks;
     private boolean closed;
+    /**
+     * IDK figure out later
+     */
     public MotorControlAlgorithm algorithm;
 
     /**
@@ -56,7 +59,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     } // made so we can sort if needed
 
     /**
-     * Sets the power of the specific motor Object. Ex frontLeft.SP(1);
+     * Sets the power of the specific motor Object, Ex frontLeft.SP(1);
      * @param power Power of the motor, between -1 and 1
      */
     public void SP(double power) {
@@ -65,7 +68,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Sets a target position for the encoders within the motor Object. Ex frontLeft.STP(100);
+     * Sets a target position for the encoders within the motor Object, Ex frontLeft.STP(100);
      * @param tp Target Position (in ticks)
      */
     public void STP(int tp) {
@@ -74,7 +77,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Sets the mode of the motor Object to RUN_TO_POSITION. Ex frontLeft.RTP();
+     * Sets the mode of the motor Object to RUN_TO_POSITION, Ex frontLeft.RTP();
      */
     public void RTP() {
         ensureOpen();
@@ -82,7 +85,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Sets the mode of the motor Object to STOP_AND_RESET_ENCODERS. Ex frontLeft.SAR();
+     * Sets the mode of the motor Object to STOP_AND_RESET_ENCODERS, Ex frontLeft.SAR();
      */
     public void SAR() {
         ensureOpen();
@@ -90,7 +93,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Sets the mode of the motor Object to RUN_WITHOUT_ENCODER. Ex frontLeft.RWE();
+     * Sets the mode of the motor Object to RUN_WITHOUT_ENCODER, Ex frontLeft.RWE();
      */
     public void RWE() {
         ensureOpen();
@@ -98,7 +101,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Sets the mode of motor Object to RUN_USING_ENCODER. Ex frontLeft.RUE();
+     * Sets the mode of motor Object to RUN_USING_ENCODER, Ex frontLeft.RUE();
      */
     public void RUE() {
         ensureOpen();
@@ -139,7 +142,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Returns whether or not a motor is busy. Ex frontLeft.isBusy();
+     * Returns whether or not a motor is busy, Ex frontLeft.isBusy();
      * @return isBusy (true or false)
      */
     public boolean isBusy() {
@@ -147,7 +150,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Returns the current position of the motor Object. Ex frontLeft.GCP();
+     * Returns the current position of the motor Object, Ex frontLeft.GCP();
      * @return The current position of the motor in ticks
      */
     public double GCP() {
@@ -155,7 +158,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Returns the target position of the motor Object. Ex frontLeft.GTP();
+     * Returns the target position of the motor Object, Ex frontLeft.GTP();
      * @return The target position of the motor in ticks
      */
     public double GTP() {
@@ -181,7 +184,7 @@ public class Motor extends subsystem implements Closeable, Comparable<Motor> {
     }
 
     /**
-     * Compares this motor to another motor. Fill in details later.
+     * Compares this motor to another motor, Fill in details later.
      * @param otherMotor N/A - Fill in later
      * @return N/A - Fill in later
      */
