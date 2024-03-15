@@ -15,7 +15,7 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
      * Creates a HDrive drive Object by putting motors into a sorted array, and declaring the odd motor out seperate
      *
      * @param motors Four base motor Objects in an array
-     * @param motors The rotated motor Object
+     * @param midshift The rotated motor Object
      */
     public HDrive(Motor[] motors, Motor midshift) {
         Arrays.sort(motors); // allows us to ensure motors are in the right order no matter what order the motor array is sent in
