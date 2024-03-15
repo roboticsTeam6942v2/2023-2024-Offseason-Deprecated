@@ -5,6 +5,12 @@ import androidx.annotation.NonNull;
 public interface DrivetrainMotorControls {
 
     /**
+     * Returns whether or not the drivetrain is busy
+     * @return isBusy (true or false)
+     */
+    public boolean isBusy();
+
+    /**
      * Set power to motors using a case switch
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      * @param p Power (between -1 and 1)

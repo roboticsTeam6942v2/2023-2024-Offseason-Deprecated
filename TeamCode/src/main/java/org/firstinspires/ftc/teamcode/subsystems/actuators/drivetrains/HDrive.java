@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems.actuators.drivetrains;
 import androidx.annotation.NonNull;
 
 import org.firstinspires.ftc.teamcode.libraries.subsystem;
+import org.firstinspires.ftc.teamcode.subsystems.EaseCommands;
 import org.firstinspires.ftc.teamcode.subsystems.actuators.base.Motor;
 import org.firstinspires.ftc.teamcode.subsystems.interfaces.DrivetrainHolonomic;
 
@@ -17,7 +18,7 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
     /**
      * Creates a HDrive drive Object by putting motors into a sorted array, and declaring the odd motor out seperate
      *
-     * @param motors Four base motor Objects in an array
+     * @param motors   Four base motor Objects in an array
      * @param midshift The rotated motor Object
      */
     public HDrive(Motor[] motors, Motor midshift) {
@@ -69,19 +70,103 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
         midShift.SP(x * 1.5 / speed);
     }
 
+    @Override
+    public boolean isBusy() {
+        return frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy() && midShift.isBusy();
+    }
+
     /**
      * Driving method used for autonomous using case switch, distance, and power
+     *
      * @param direction Direction to drive
-     * @param inches Distance using inches
-     * @param speed Power (between -1 and 1)
+     * @param inches    Distance using inches
+     * @param speed     Power (between -1 and 1)
      */
     @Override
     public void drive(@NonNull String direction, double inches, double speed) {
-        
+        SAR("dt");
+        RUE("dt");
+        switch (direction) {
+            case "f":
+                STP("dt", EaseCommands.inTT_dt(inches));
+                SP("dt", speed);
+                RTP("dt");
+                while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy()) {
+                }
+                SP("dt", 0);
+            case "b":
+                STP("dt", EaseCommands.inTT_dt(-inches));
+                SP("dt", speed);
+                RTP("dt");
+                while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy()) {
+                }
+                SP("dt", 0);
+            case "l":
+                STP("m", EaseCommands.inTT_dt(-inches));
+                SP("m", speed);
+                RTP("m");
+                while (midShift.isBusy()) {
+                }
+                SP("m", 0);
+            case "r":
+                STP("m", EaseCommands.inTT_dt(inches));
+                SP("m", speed);
+                RTP("m");
+                while (midShift.isBusy()) {
+                }
+                SP("m", 0);
+            case "fr":
+                STP("fl", EaseCommands.inTT_dt(inches));
+                STP("fr", EaseCommands.inTT_dt(inches));
+                STP("bl", EaseCommands.inTT_dt(inches));
+                STP("br", EaseCommands.inTT_dt(inches));
+                STP("m", EaseCommands.inTT_dt(inches));
+                SP("all", speed);
+                RTP("all");
+                while (isBusy()) {
+                }
+                SP("all", 0);
+            case "bl":
+                STP("fl", EaseCommands.inTT_dt(-inches));
+                STP("fr", EaseCommands.inTT_dt(-inches));
+                STP("bl", EaseCommands.inTT_dt(-inches));
+                STP("br", EaseCommands.inTT_dt(-inches));
+                STP("m", EaseCommands.inTT_dt(-inches));
+                SP("all", speed);
+                RTP("all");
+                while (isBusy()) {
+                }
+                SP("all", 0);
+            case "fl":
+                STP("fl", EaseCommands.inTT_dt(inches));
+                STP("fr", EaseCommands.inTT_dt(inches));
+                STP("bl", EaseCommands.inTT_dt(inches));
+                STP("br", EaseCommands.inTT_dt(inches));
+                STP("m", EaseCommands.inTT_dt(-inches));
+                SP("all", speed);
+                RTP("all");
+                while (isBusy()) {
+                }
+                SP("all", 0);
+            case "br":
+                STP("fl", EaseCommands.inTT_dt(-inches));
+                STP("fr", EaseCommands.inTT_dt(-inches));
+                STP("bl", EaseCommands.inTT_dt(-inches));
+                STP("br", EaseCommands.inTT_dt(-inches));
+                STP("m", EaseCommands.inTT_dt(inches));
+                SP("all", speed);
+                RTP("all");
+                while (isBusy()) {
+                }
+                SP("all", 0);
+            default:
+                break;
+        }
     }
 
     /**
      * Set power to motors using a case switch
+     *
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      * @param p Power (between -1 and 1)
      */
@@ -248,6 +333,7 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
 
     /**
      * Sets the mode of the motor to STOP_AND_RESET_ENCODERS using case switch
+     *
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      */
     @Override
@@ -302,6 +388,7 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
 
     /**
      * Sets the mode of the motor to RUN_WITHOUT_ENCODERS using case switch
+     *
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      */
     @Override
@@ -356,6 +443,7 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
 
     /**
      * Sets the mode of the motor to RUN_USING_ENCODERS using case switch
+     *
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
      */
     @Override
