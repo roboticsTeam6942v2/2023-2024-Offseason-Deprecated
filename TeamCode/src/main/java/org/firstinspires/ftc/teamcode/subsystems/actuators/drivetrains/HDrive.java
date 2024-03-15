@@ -8,6 +8,9 @@ import org.firstinspires.ftc.teamcode.subsystems.interfaces.DrivetrainHolonomic;
 
 import java.util.Arrays;
 
+/**
+ * Object in order to create HDrive drive for autonomous
+ */
 public class HDrive extends subsystem implements DrivetrainHolonomic {
     private Motor frontLeft, frontRight, backLeft, backRight, midShift;
 
@@ -15,7 +18,7 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
      * Creates a HDrive drive Object by putting motors into a sorted array, and declaring the odd motor out seperate
      *
      * @param motors Four base motor Objects in an array
-     * @param motors The rotated motor Object
+     * @param midshift The rotated motor Object
      */
     public HDrive(Motor[] motors, Motor midshift) {
         Arrays.sort(motors); // allows us to ensure motors are in the right order no matter what order the motor array is sent in
@@ -66,11 +69,22 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
         midShift.SP(x * 1.5 / speed);
     }
 
+    /**
+     * Driving method used for autonomous using case switch, distance, and power
+     * @param direction Direction to drive
+     * @param inches Distance using inches
+     * @param speed Power (between -1 and 1)
+     */
     @Override
     public void drive(@NonNull String direction, double inches, double speed) {
         
     }
 
+    /**
+     * Set power to motors using a case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     * @param p Power (between -1 and 1)
+     */
     @Override
     public void SP(@NonNull String m, double p) {
         switch (m) {
@@ -232,6 +246,10 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
         }
     }
 
+    /**
+     * Sets the mode of the motor to STOP_AND_RESET_ENCODERS using case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     */
     @Override
     public void SAR(@NonNull String m) {
         switch (m) {
@@ -282,6 +300,10 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
         }
     }
 
+    /**
+     * Sets the mode of the motor to RUN_WITHOUT_ENCODERS using case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     */
     @Override
     public void RWE(@NonNull String m) {
         switch (m) {
@@ -332,6 +354,10 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
         }
     }
 
+    /**
+     * Sets the mode of the motor to RUN_USING_ENCODERS using case switch
+     * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
+     */
     @Override
     public void RUE(@NonNull String m) {
         switch (m) {
