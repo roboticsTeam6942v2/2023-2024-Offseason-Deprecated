@@ -37,6 +37,7 @@ public class Mecanum extends subsystem implements DrivetrainHolonomic {
      */
     @Override
     public void teleOpDrive(double y, double rx, double x) {
+        RWE("dt");
         // maintain ratio in case of range clip
         double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
         frontLeft.SP(((y+x*1.1+rx)/denominator));
@@ -53,6 +54,7 @@ public class Mecanum extends subsystem implements DrivetrainHolonomic {
      */
     @Override
     public void teleOpDrive(double y, double rx, double x, double speed) {
+        RWE("dt");
         // maintain ratio in case of range clip
         double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
         frontLeft.SP(((y+x*1.1+rx)/denominator)/speed);
