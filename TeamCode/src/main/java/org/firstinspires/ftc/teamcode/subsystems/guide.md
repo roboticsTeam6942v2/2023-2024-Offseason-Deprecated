@@ -10,3 +10,4 @@ When used for drive,
 - l - left
 - r - right
 - dt - drivetrain
+- all - all
