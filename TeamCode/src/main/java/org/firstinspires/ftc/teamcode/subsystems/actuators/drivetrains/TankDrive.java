@@ -9,16 +9,17 @@ import org.firstinspires.ftc.teamcode.subsystems.interfaces.DrivetrainHolonomic;
 import java.util.Arrays;
 
 /**
- * Object in order to create Mecanum drive for autonomous and teleop
+ * Object in order to create tank drive for autonomous and teleop
  */
-public class Mecanum extends subsystem implements DrivetrainHolonomic {
+public class TankDrive extends subsystem implements DrivetrainMotorControls {
     private Motor frontLeft, frontRight, backLeft, backRight;
 
     /**
-     * Creates a Mecanum drive Object by putting motors into a sorted array
+     * Creates a TankDrive drive Object by putting motors into a sorted array
+     *
      * @param motors Four motor Objects in an array
      */
-    public Mecanum(Motor[] motors) {
+    public TankDrive(Motor[] motors) {
         Arrays.sort(motors); // allows us to ensure motors are in the right order no matter what order the motor array is sent in
         this.backLeft = motors[0];
         this.backRight = motors[1];
@@ -29,39 +30,18 @@ public class Mecanum extends subsystem implements DrivetrainHolonomic {
             motor.close();
         }
     }
+
     /**
-     * Set power to motors for teleOp driving
-     * @param y Driving
-     * @param rx Rotation
-     * @param x Strafing
+     * Put power to motors for the left and right sides
+     * @param left Left joystick
+     * @param right Right joystick
      */
-    @Override
-    public void teleOpDrive(double y, double rx, double x) {
+    public void teleOpDrive(double left, double right){
         RWE("dt");
-        // maintain ratio in case of range clip
-        double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
-        frontLeft.SP(((y+x*1.1+rx)/denominator));
-        backLeft.SP(((y-x*1.1+rx)/denominator));
-        frontRight.SP(((y-x*1.1-rx)/denominator));
-        backRight.SP(((y+x*1.1-rx)/denominator));
+        frontLeft.SP(left);
+        frontRight.SP(right);
     }
-    /**
-     * Set power to motors for teleOp driving, allows for adjustment to speed
-     * @param y Driving
-     * @param rx Rotation
-     * @param x Strafing
-     * @param speed Speed reduction, higher reduction means slower speed
-     */
-    @Override
-    public void teleOpDrive(double y, double rx, double x, double speed) {
-        RWE("dt");
-        // maintain ratio in case of range clip
-        double denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
-        frontLeft.SP(((y+x*1.1+rx)/denominator)/speed);
-        backLeft.SP(((y-x*1.1+rx)/denominator)/speed);
-        frontRight.SP(((y-x*1.1-rx)/denominator)/speed);
-        backRight.SP(((y+x*1.1-rx)/denominator)/speed);
-    }
+
     /**
      * Set power to motors using a case switch
      * @param m Motor abbreviation (fl, fr, bl, br, f, b, l, r, dt)
@@ -373,62 +353,24 @@ public class Mecanum extends subsystem implements DrivetrainHolonomic {
                 }
                 SP("dt", 0);
             case "l":
-                STP("fl", EaseCommands.inTT_dt(-inches));
-                STP("fr", EaseCommands.inTT_dt(inches));
-                STP("bl", EaseCommands.inTT_dt(inches));
-                STP("br", EaseCommands.inTT_dt(-inches));
-                SP("dt", speed);
-                RTP("dt");
+                //STP("fl", EaseCommands.inTT_dt(-inches));
+               //STP("fr", EaseCommands.inTT_dt(inches));
+                //STP("bl", EaseCommands.inTT_dt(inches));
+                //STP("br", EaseCommands.inTT_dt(-inches));
+                //SP("dt", speed);
+                //RTP("dt");
+                SP("fl", speed);
                 while (isBusy()) {
                 }
                 SP("dt", 0);
             case "r":
-                STP("fl", EaseCommands.inTT_dt(inches));
-                STP("fr", EaseCommands.inTT_dt(-inches));
-                STP("bl", EaseCommands.inTT_dt(-inches));
-                STP("br", EaseCommands.inTT_dt(inches));
-                SP("dt", speed);
-                RTP("dt");
-                while (isBusy()) {
-                }
-                SP("dt", 0);
-            case "fr":
-                STP("fl", EaseCommands.inTT_dt(inches));
-                STP("fr", EaseCommands.inTT_dt(0));
-                STP("bl", EaseCommands.inTT_dt(0));
-                STP("br", EaseCommands.inTT_dt(inches));
-                SP("dt", speed);
-                RTP("dt");
-                while (isBusy()) {
-                }
-                SP("dt", 0);
-            case "bl":
-                STP("fl", EaseCommands.inTT_dt(-inches));
-                STP("fr", EaseCommands.inTT_dt(0));
-                STP("bl", EaseCommands.inTT_dt(0));
-                STP("br", EaseCommands.inTT_dt(-inches));
-                SP("dt", speed);
-                RTP("dt");
-                while (isBusy()) {
-                }
-                SP("dt", 0);
-            case "fl":
-                STP("fl", EaseCommands.inTT_dt(0));
-                STP("fr", EaseCommands.inTT_dt(inches));
-                STP("bl", EaseCommands.inTT_dt(inches));
-                STP("br", EaseCommands.inTT_dt(0));
-                SP("dt", speed);
-                RTP("dt");
-                while (isBusy()) {
-                }
-                SP("dt", 0);
-            case "br":
-                STP("fl", EaseCommands.inTT_dt(0));
-                STP("fr", EaseCommands.inTT_dt(-inches));
-                STP("bl", EaseCommands.inTT_dt(-inches));
-                STP("br", EaseCommands.inTT_dt(0));
-                SP("dt", speed);
-                RTP("dt");
+                //STP("fl", EaseCommands.inTT_dt(inches));
+                //STP("fr", EaseCommands.inTT_dt(-inches));
+               // STP("bl", EaseCommands.inTT_dt(-inches));
+                //STP("br", EaseCommands.inTT_dt(inches));
+               // SP("dt", speed);
+               // RTP("dt");
+                SP("fr", speed);
                 while (isBusy()) {
                 }
                 SP("dt", 0);

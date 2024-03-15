@@ -8,6 +8,9 @@ import org.firstinspires.ftc.teamcode.subsystems.interfaces.DrivetrainHolonomic;
 
 import java.util.Arrays;
 
+/**
+ * Object in order to create h drive for autonomous and teleop
+ */
 public class HDrive extends subsystem implements DrivetrainHolonomic {
     private Motor frontLeft, frontRight, backLeft, backRight, midShift;
 
