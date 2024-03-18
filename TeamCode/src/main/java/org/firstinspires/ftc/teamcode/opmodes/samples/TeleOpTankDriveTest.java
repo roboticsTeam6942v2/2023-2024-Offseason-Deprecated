@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.actuators.base.Motor;
  * TeleOp code to test hdrive
  */
 @TeleOp
-public class TeleOpMecanum extends LinearOpMode{
+public class TeleOpTankDriveTest extends LinearOpMode {
     public static Motor frontLeft, frontRight, backLeft, backRight;
 
     public void runOpMode() {
@@ -25,7 +25,7 @@ public class TeleOpMecanum extends LinearOpMode{
             double left = gamepad1.left_stick_y;
             double right = gamepad1.right_stick_y;
 
-            teleOpDrive(left, right);
+            robot.teleOpDrive(left, right);
         }
     }
 }
