@@ -5,6 +5,7 @@ import org.firstinspires.ftc.teamcode.libraries.subsystem;
 import org.firstinspires.ftc.teamcode.subsystems.EaseCommands;
 import org.firstinspires.ftc.teamcode.subsystems.actuators.base.Motor;
 import org.firstinspires.ftc.teamcode.subsystems.interfaces.DrivetrainHolonomic;
+import org.firstinspires.ftc.teamcode.subsystems.interfaces.DrivetrainMotorControls;
 
 import java.util.Arrays;
 
@@ -333,7 +334,6 @@ public class TankDrive extends subsystem implements DrivetrainMotorControls {
      * @param inches Distance using inches
      * @param speed Power (between -1 and 1)
      */
-    @Override
     public void drive(@NonNull String direction, double inches, double speed) {
         SAR("dt");
         RUE("dt");

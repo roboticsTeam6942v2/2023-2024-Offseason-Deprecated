@@ -72,6 +72,11 @@ public class HDrive extends subsystem implements DrivetrainHolonomic {
     }
 
     @Override
+    public boolean isBusy() {
+        return frontLeft.isBusy()&&frontRight.isBusy()&&backRight.isBusy()&&backLeft.isBusy()&&midShift.isBusy();
+    }
+
+    @Override
     public void SP(@NonNull String m, double p) {
         switch (m) {
             case "fl":
