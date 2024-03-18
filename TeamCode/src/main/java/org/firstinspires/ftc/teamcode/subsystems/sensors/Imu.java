@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.subsystems.sensors;
 
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.*;
-
 import androidx.annotation.NonNull;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
@@ -48,9 +46,9 @@ public class Imu extends subsystem {
      * Returns the current angle of the robot
      * @return globalAngle Current angle
      */
-    public double getAngle() {
+    public double getAngle(AngleUnit angleunit) {
         // imu works in eulear angles so we have to detect when it rolls across the backwards 180 threshold
-        Orientation angles = imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        Orientation angles = imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, angleunit);
         double change = angles.firstAngle - lastAngles.firstAngle;
 
         if (change < -180) {
