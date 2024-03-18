@@ -1,7 +1,10 @@
-package org.firstinspires.ftc.teamcode.subsystems.sensors;
+package org.firstinspires.ftc.teamcode.subsystems.actuators.base;
 
 import androidx.annotation.NonNull;
+
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.teamcode.libraries.subsystem;
 
 // creating this as a base for the future, i can't think of any methods that would need to be added
@@ -10,15 +13,15 @@ import org.firstinspires.ftc.teamcode.libraries.subsystem;
 /**
  * Methods to streamline the usage of Servos
  */
-public class Servo extends subsystem{
+public class Servos extends subsystem{
     private Servo servo;
 
     /**
      * Servo object
-     * @param name Name of the servo in the code
-     * @param hwMap Name of the servo in the phone
+     * @param name Name of the servo in the phone
+     * @param hwMap HardwareMap object from OpMode
      */
-    public Servo(String name, @NonNull HardwareMap hwMap){
+    public Servos(String name, @NonNull HardwareMap hwMap){
         servo = hwMap.get(Servo.class, name);
     }
 
