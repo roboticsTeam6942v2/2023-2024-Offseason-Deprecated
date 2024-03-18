@@ -57,6 +57,12 @@ public class TeleOpMecanum extends LinearOpMode {
             } else if (gamepad1.start && !fast) {
                 fast = true;
             }
+
+            if (gamepad1.back && robotOriented) {
+                robotOriented = false;
+            } else if (gamepad1.back && !robotOriented) {
+                robotOriented = true;
+            }
         }
     }
 }
